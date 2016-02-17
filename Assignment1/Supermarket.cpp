@@ -40,7 +40,10 @@ Supermarket::Supermarket() {
 		string line;
 		getline(fileIn, line); //THIS IS CONFUUSING
 		cout << line;
-		 // new loop is another line
+		string itemname;
+		fileIn >> itemname;
+		item[0].setItemName(itemname);
+		cout << item[0].getItemName();
 		//read into item array
 	}
 	else 
