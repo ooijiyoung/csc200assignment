@@ -10,7 +10,7 @@ class Supermarket {
 private:
 	string name; //store name
 	double cash; //store cash
-	int stock; //store stock
+	int stock; //store stock 
 	Item item[100];
 public:
 	
