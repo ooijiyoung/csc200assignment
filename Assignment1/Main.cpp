@@ -6,7 +6,7 @@
 #include <iomanip>
 #include "Supermarket.h"
 #include <Windows.h>
-
+#define NOMINMAX
 using namespace std;
 
 Supermarket store; //global
