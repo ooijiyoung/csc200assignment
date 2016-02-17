@@ -36,10 +36,16 @@ Supermarket::Supermarket() {
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
 		cout << "File Open";
+		//read first line (storeName and store details)
+		string line;
+		getline(fileIn, line); //THIS IS CONFUUSING
+		cout << line;
+		 // new loop is another line
 		//read into item array
 	}
 	else 
 	{
 		cout << "Unable to open file \"Stock.txt\"! This program will be terminated";
 	}
+	fileIn.close();
 }
