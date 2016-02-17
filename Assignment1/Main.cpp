@@ -13,6 +13,7 @@ Supermarket store; //global
 int printMenu();
 
 int main() {
+
 	int sel;
 	do {
 		sel = printMenu();

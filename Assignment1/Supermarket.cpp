@@ -35,6 +35,11 @@ Supermarket::Supermarket() {
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
-
+		cout << "File Open";
+		//read into item array
+	}
+	else 
+	{
+		cout << "Unable to open file \"Stock.txt\"! This program will be terminated";
 	}
 }
