@@ -34,4 +34,7 @@ void Supermarket::finaceReport() {
 Supermarket::Supermarket() {
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
+	if (fileIn.is_open()) {
+
+	}
 }
