@@ -32,23 +32,29 @@ void Supermarket::finaceReport() {
 }
 
 Supermarket::Supermarket() {
+	name = "NULL";
+	cash = NULL;
+	stock = NULL;
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
-		cout << "File Open";
-		//read first line (storeName and store details)
+		cout << "File Open"; //DEBUG
+		//TODO : Need to seperate the string and put into correct var =.= 
 		string line;
-		getline(fileIn, line); //THIS IS CONFUUSING
-		cout << line;
-		string itemname;
-		fileIn >> itemname;
-		item[0].setItemName(itemname);
-		cout << item[0].getItemName();
+		getline(fileIn, line); //FIRST LINE - to STORE NAME
+		cout << line <<endl; 
+		int x = 0; //array need x 
+
+		while (getline(fileIn, line)) { //Stock array - read until EOF
+			item[x].setItemName(line);
+			cout << item[x].getItemName();
+		}
+		
 		//read into item array
 	}
 	else 
 	{
-		cout << "Unable to open file \"Stock.txt\"! This program will be terminated";
+		cout << "Something bad happened!"; //THROW NEW EXCEPTION
 	}
 	fileIn.close();
 }
