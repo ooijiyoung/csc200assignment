@@ -1,4 +1,5 @@
 # csc200assignment
-CSC200 Assignment
+CSC206 Assignment C++ 
 
-Personal GIT control
+Group Assignemnt
+
