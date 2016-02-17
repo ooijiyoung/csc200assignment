@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+//TODO: EVERYTHING .......
+
 // Supermarket implentation
 
 string Supermarket::getStoreName() { return name; }
@@ -58,3 +60,5 @@ Supermarket::Supermarket() {
 	}
 	fileIn.close();
 }
+
+Supermarket::~Supermarket(){} //destructor

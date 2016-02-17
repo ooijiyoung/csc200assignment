@@ -23,7 +23,7 @@ public:
 	void finaceReport();
 
 	Supermarket(); //constructor
-	
+	~Supermarket(); //desturctor 
 };
 
 

@@ -37,12 +37,16 @@ int printMenu() {
 	switch (selection)
 	{
 	case 1:
+		store.buyItem();
 		break;
 	case 2:
+		store.finaceReport();
 		break;
 	case 3:
+		//stock report
 		break;
 	case 4:
+		//stock maintanace
 		break;
 	case 5:
 		cout << "Press any key to exit";
