@@ -49,7 +49,7 @@ int printMenu() {
 		exit(0);
 		break;
 	default:
-		//cout << "Invalid Entry" << endl;
+		//cout << "Invalid Entry" << endl; -replace with popup Error Message 
 		MessageBox(NULL, L"Invalid Entry\nPlease Try Again!", L"Error", MB_OK | MB_ICONERROR);
 		return 0;
 		break;
