@@ -19,7 +19,6 @@ public:
 	int getStoreStock();
 	
 	//some method  DO NOT REMOVE
-	void readFile(); //remove this soon, constructoor would read file 
 	void buyItem();
 	void finaceReport();
 
