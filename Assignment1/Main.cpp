@@ -9,7 +9,7 @@
 #define NOMINMAX
 using namespace std;
 
-Supermarket store; //global
+Supermarket store; //global var in this file
 int printMenu();
 
 int main() {
