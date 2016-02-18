@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <Windows.h>
+#define NOMINMAX
 using namespace std;
 
 //TODO: EVERYTHING .......
@@ -56,12 +58,29 @@ Supermarket::Supermarket() {
 		//end of first line
 
 		int x = 0; //array need x 
-		while (getline(fileIn, line)) { //Stock array - read until EOF
-			item[x].setItemName(line);
-			cout << item[x].getItemName();
-
-
+		try
+		{
+			while (!fileIn.eof()) { //Stock array - read until EOF
+				getline(fileIn, line, ':'); //itemname
+				item[x].setItemName(line);
+				getline(fileIn, line, ':'); //number
+				item[x].setQuantity(stoi(line));
+				getline(fileIn, line, ':'); //unit price
+				item[x].setPrice(stod(line));
+				getline(fileIn, line, ':');//unit weight
+				item[x].setWeight(stoi(line));
+				getline(fileIn, line, ':');//unit descp
+				item[x].setDescript(line);
+				cout << item[x].getItemName(); //TODO: remove after done
+				cout << item[x].getPrice() << item[x].getQuantity() << item[x].getWeight() << item[x].getDescript();
+				x++;
+			}
 		}
+		catch (const std::exception&)
+		{
+			MessageBox(NULL, L"Something happened!", L"Error", MB_OK | MB_ICONERROR); //make sure last EOF dont have the ':'
+		}
+
 		
 		//read into item array
 	}
