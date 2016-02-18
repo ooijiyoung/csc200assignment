@@ -40,16 +40,27 @@ Supermarket::Supermarket() {
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
+
 		cout << "File Open"; //DEBUG
 		//TODO : Need to seperate the string and put into correct var =.= 
 		string line;
-		getline(fileIn, line); //FIRST LINE - to STORE NAME
-		cout << line <<endl; 
-		int x = 0; //array need x 
+		//First Line
+		getline(fileIn, line, ':');//read name
+		name = line;
+		getline(fileIn, line, ':');//number of different items stocked 
+		stock = stoi(line);
+		getline(fileIn, line, ':');//cash on hand
+		cash = stod(line);
+		
+		cout << "name= " << name << " stock= " << stock << " cash= " << cash << endl; //DEBUG TO BE REMOVED
+		//end of first line
 
+		int x = 0; //array need x 
 		while (getline(fileIn, line)) { //Stock array - read until EOF
 			item[x].setItemName(line);
 			cout << item[x].getItemName();
+
+
 		}
 		
 		//read into item array
