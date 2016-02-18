@@ -46,7 +46,7 @@ int printMenu() {
 		//stock report
 		break;
 	case 4:
-		//stock maintanace
+		//stock maintanace /
 		break;
 	case 5:
 		cout << "Press any key to exit";
