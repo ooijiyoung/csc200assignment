@@ -1,4 +1,4 @@
 SJ Supermarket:100:1234.56:
 Licorice:500:0.50:50:metre:
 Bread buns:1000:2.00:500:6-pack:
-Cabbage:500:1.90:300:each:
+Cabbage:500:1.90:300:each

@@ -16,7 +16,7 @@ int Supermarket::getStoreStock() { return stock; }
 
 //readfile
 
-/*
+/* REMOVE THIS SHIT
 ifstream fileIn;
 void Supermarket::readFile() {
 	fileIn.open("Stock.txt");
@@ -78,7 +78,7 @@ Supermarket::Supermarket() {
 		}
 		catch (const std::exception&)
 		{
-			MessageBox(NULL, L"Something happened!", L"Error", MB_OK | MB_ICONERROR); //make sure last EOF dont have the ':'
+			MessageBox(NULL, L"Something wrong with \"Stock.txt\" file!", L"Error", MB_OK | MB_ICONERROR); //make sure last EOF dont have the ':'
 		}
 
 		
