@@ -27,7 +27,11 @@ void Supermarket::readFile() {
 */
 
 void Supermarket::buyItem() {
-	//TODO: item quantity --
+	cout << "Shop" << endl << "Items in store" << endl;
+	for (int x = 0; x < itemInStore; x++) {
+		cout << x + 1 << ". " << item[x].getItemName() << endl;
+	}
+
 }
 
 void Supermarket::finaceReport() {
@@ -39,6 +43,7 @@ Supermarket::Supermarket() {
 	name = "NULL";
 	cash = NULL;
 	stock = NULL;
+	cout << "Please Wait.... Loading Data" << endl;
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
@@ -61,6 +66,7 @@ Supermarket::Supermarket() {
 		try
 		{
 			while (!fileIn.eof()) { //Stock array - read until EOF
+				getline(fileIn, line, '\n'); //eat newline
 				getline(fileIn, line, ':'); //itemname
 				item[x].setItemName(line);
 				getline(fileIn, line, ':'); //number
@@ -72,9 +78,10 @@ Supermarket::Supermarket() {
 				getline(fileIn, line, ':');//unit descp
 				item[x].setDescript(line);
 				cout << item[x].getItemName(); //TODO: remove after done
-				cout << item[x].getPrice() << item[x].getQuantity() << item[x].getWeight() << item[x].getDescript();
+				cout << item[x].getPrice() << item[x].getQuantity() << item[x].getWeight() << item[x].getDescript() <<endl;
 				x++;
 			}
+			itemInStore = x;
 		}
 		catch (const std::exception&)
 		{
@@ -89,6 +96,7 @@ Supermarket::Supermarket() {
 		cout << "Something bad happened!"; //THROW NEW EXCEPTION
 	}
 	fileIn.close();
+	
 }
 
 Supermarket::~Supermarket(){} //destructor

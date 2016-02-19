@@ -13,18 +13,19 @@ Supermarket store; //global var in this file
 int printMenu();
 
 int main() {
-
+	
+	//system("cls"); //clrscr
 	int sel;
 	do {
 		sel = printMenu();
 	} while (sel == 0);
 
-	cout << sel << endl;
 	system("pause");
 	return 0;
 }
 
 int printMenu() {
+	//system("cls");
 	cout << store.getStoreName() << " Sales System " << endl;
 	cout << "1. Shop" << endl << "2. Display financal report" << endl << "3. Display stock report" <<endl;
 	cout << "4. Stock Maintanace" <<endl << "5. Quit" << endl << "Enter Selection: "; 
@@ -43,7 +44,7 @@ int printMenu() {
 		store.finaceReport();
 		break;
 	case 3:
-		//stock report
+		//dosck rpt
 		break;
 	case 4:
 		//stock maintanace /
