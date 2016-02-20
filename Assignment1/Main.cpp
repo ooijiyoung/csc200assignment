@@ -1,5 +1,3 @@
-//#include JiYoung.h
-//Ver 1.0
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,19 +6,19 @@
 #include <Windows.h>
 #include "JiYoung.h"
 
+const string VERSION = "2.0";
+
 using namespace std;
 JiYoung ojy;
 Supermarket store; //global var in this file
 int printMenu();
 
 int main() {
-	
-	//system("cls"); //clrscr
+
 	for (;;) {
 		printMenu();
 	}
-
-	system("pause");
+	ojy.getch();
 	return 0;
 }
 
@@ -61,15 +59,5 @@ int printMenu() {
 		break;
 	}
 	
-	/*
-	try
-	{
-		int sel = stoi(selection); //stoi = Integer parseInt
-	}
-	catch (const std::exception&)
-	{
-		cout << "Unexpected Error Occured , std::invalid_argument" <<endl;
-	}
-	*/
 	return selection;
 }
