@@ -44,10 +44,10 @@ int printMenu() {
 		store.finaceReport();
 		break;
 	case 3:
-		//dosck rpt
+		store.stockReport();
 		break;
 	case 4:
-		//stock maintanace /
+		store.stockMaintance();//stock maintanace
 		break;
 	case 5:
 		cout << "Press any key to exit";

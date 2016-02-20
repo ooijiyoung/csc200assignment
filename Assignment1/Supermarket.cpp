@@ -60,6 +60,14 @@ void Supermarket::finaceReport() {
 	//TODO: list store cash
 }
 
+void Supermarket::stockReport() {
+	
+}
+
+void Supermarket::stockMaintance() {
+
+}
+
 Supermarket::Supermarket() {
 	name = "NULL";
 	cash = NULL;

@@ -23,6 +23,8 @@ public:
 	//some method  DO NOT REMOVE
 	void buyItem();
 	void finaceReport();
+	void stockReport();
+	void stockMaintance();
 
 	Supermarket(); //constructor
 	~Supermarket(); //desturctor 
