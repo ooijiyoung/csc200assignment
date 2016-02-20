@@ -3,10 +3,11 @@
 #include <fstream>
 #include <string>
 #include <Windows.h>
+#include "JiYoung.h"
 #define NOMINMAX
 using namespace std;
 
-//TODO: EVERYTHING .......
+extern JiYoung ojy;
 
 // Supermarket implentation
 
@@ -31,6 +32,23 @@ void Supermarket::buyItem() {
 	for (int x = 0; x < itemInStore; x++) {
 		cout << x + 1 << ". " << item[x].getItemName() << endl;
 	}
+	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
+	int selBuy = NULL;
+	bool isValidItem = false;
+	while (isValidItem == false) {
+		selBuy = ojy.isValidInt();
+		if (selBuy > 0 && selBuy <= itemInStore) { //buy item
+			isValidItem = true;
+			cout << "Item " << item[selBuy - 1].getItemName() << " Sold" << endl;
+		}
+		else if (selBuy == 0) {
+			isValidItem = true;
+		}
+		else{
+			cout << "Invalid Entry, Please Retry: ";
+		}
+	}//end while
+	
 
 }
 

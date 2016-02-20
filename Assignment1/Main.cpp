@@ -6,26 +6,26 @@
 #include <iomanip>
 #include "Supermarket.h"
 #include <Windows.h>
-#define NOMINMAX
-using namespace std;
+#include "JiYoung.h"
 
+using namespace std;
+JiYoung ojy;
 Supermarket store; //global var in this file
 int printMenu();
 
 int main() {
 	
 	//system("cls"); //clrscr
-	int sel;
-	do {
-		sel = printMenu();
-	} while (sel == 0);
+	for (;;) {
+		printMenu();
+	}
 
 	system("pause");
 	return 0;
 }
 
 int printMenu() {
-	//system("cls");
+	ojy.clrscr();
 	cout << store.getStoreName() << " Sales System " << endl;
 	cout << "1. Shop" << endl << "2. Display financal report" << endl << "3. Display stock report" <<endl;
 	cout << "4. Stock Maintanace" <<endl << "5. Quit" << endl << "Enter Selection: "; 
@@ -51,7 +51,7 @@ int printMenu() {
 		break;
 	case 5:
 		cout << "Press any key to exit";
-		system("pause>nul");
+		ojy.getch();
 		exit(0);
 		break;
 	default:
