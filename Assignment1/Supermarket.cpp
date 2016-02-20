@@ -27,8 +27,9 @@ void Supermarket::readFile() {
 }  GOING To BE REMOVED SOON
 */
 
-void Supermarket::buyItem() {
-	cout << "Shop" << endl << "Items in store" << endl;
+void Supermarket::buyItem() { //INCOMPLETE
+	ojy.clrscr();
+	cout << name << " Shop" << endl << "Items in store" << endl;
 	for (int x = 0; x < itemInStore; x++) {
 		cout << x + 1 << ". " << item[x].getItemName() << endl;
 	}
@@ -40,16 +41,18 @@ void Supermarket::buyItem() {
 		if (selBuy > 0 && selBuy <= itemInStore) { //buy item
 			isValidItem = true;
 			cout << "Item " << item[selBuy - 1].getItemName() << " Sold" << endl;
+			cout << "Press any key to return to Menu";
+			ojy.getch();
 		}
 		else if (selBuy == 0) {
-			isValidItem = true;
+			isValidItem = true; //exit and return to menu
+			cout << "Press any key to return to Menu";
+			ojy.getch();
 		}
 		else{
 			cout << "Invalid Entry, Please Retry: ";
 		}
 	}//end while
-	
-
 }
 
 void Supermarket::finaceReport() {

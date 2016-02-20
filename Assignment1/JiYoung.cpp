@@ -42,7 +42,8 @@ double JiYoung::isValidDouble() {
 }
 
 void JiYoung::clrscr() {
-	system("cls");
+	//system("cls");
+	cout << endl << "CLRSCR IS TEMPORARY DISABLED FOR DEBUGGING PURPOSE" << endl;
 }
 
 void JiYoung::getch() {
