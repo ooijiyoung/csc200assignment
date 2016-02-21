@@ -13,6 +13,7 @@ class JiYoung {
 		double isValidDouble();
 		void clrscr();
 		void getch();
+		void clrBuffer();
 };
 
 #endif // !_JIYOUNG_

@@ -30,8 +30,7 @@ int printMenu() {
 	int selection; 
 	cin >> selection; //Input Validation
 
-	cin.clear(); //clear buffer
-	cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear buffer
+	ojy.clrBuffer();
 
 	switch (selection)
 	{

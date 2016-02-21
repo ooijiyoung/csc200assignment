@@ -28,8 +28,7 @@ double JiYoung::isValidDouble() {
 	bool isValid = false;
 	while (isValid == false) {
 		cin >> input;
-		cin.clear(); //clear buffer
-		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear buffer
+		clrBuffer();
 		try {
 			validDou = stoi(input);
 			isValid = true;
@@ -48,4 +47,10 @@ void JiYoung::clrscr() {
 
 void JiYoung::getch() {
 	system("pause>nul");
+}
+
+//This method is to clear buffer to prevent garbage in next 
+void JiYoung::clrBuffer() {
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }

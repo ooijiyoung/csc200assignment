@@ -15,17 +15,6 @@ string Supermarket::getStoreName() { return name; }
 double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
 
-//readfile
-
-/* REMOVE THIS SHIT
-ifstream fileIn;
-void Supermarket::readFile() {
-	fileIn.open("Stock.txt");
-	//POPULATE DATA HERE
-	//TODO: Read Item to Store Name, and Item array
-	fileIn.close();
-}  GOING To BE REMOVED SOON
-*/
 
 void Supermarket::buyItem() { //INCOMPLETE
 	ojy.clrscr();
