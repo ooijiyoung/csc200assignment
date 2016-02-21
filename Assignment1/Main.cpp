@@ -44,7 +44,7 @@ int printMenu() {
 		store.stockReport();
 		break;
 	case 4:
-		store.stockMaintance();//stock maintanace
+		store.stockMaintance();
 		break;
 	case 5:
 		cout << "Press any key to exit";
@@ -57,6 +57,5 @@ int printMenu() {
 		return 0;
 		break;
 	}
-	
 	return selection;
 }

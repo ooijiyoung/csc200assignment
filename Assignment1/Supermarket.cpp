@@ -19,7 +19,7 @@ int Supermarket::getStoreStock() { return stock; }
 //TODO: Least Priority
 Better "SHOP" function.
 allow to buy multiple item before return to menu
-allow to enter quanitityu to buy
+allow to enter quanitity to buy
 */
 
 //Q: will buy item add cash to store cash?
@@ -73,11 +73,27 @@ void Supermarket::finaceReport() {
 }
 
 void Supermarket::stockReport() {
-	
+	ojy.clrscr();
+	cout << name << " Shop" << endl << "Items in store" << endl;
+	cout << "Item Name"; ojy.setw("Item Name", 20); cout << "Quantity"; ojy.setw("Price", 20); cout << "Weight" << endl;
+
+	for (int x = 0; x < itemInStore; x++) {
+		// Print menu
+		cout << x + 1 << ". " << item[x].getItemName();
+		ojy.setw(item[x].getItemName(), 17);
+		cout << item[x].getQuantity();
+		cout << item[x].getPrice();
+		cout << item[x].getWeight();
+		cout << item[x].getDescript();
+		if (item[x].getQuantity() == 0) {
+			cout << "     Out Of Stock!";
+		}
+		cout << endl;
+	}
 }
 
 void Supermarket::stockMaintance() {
-
+	
 }
 
 Supermarket::Supermarket() {
