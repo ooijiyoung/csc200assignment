@@ -22,7 +22,8 @@ allow to buy multiple item before return to menu
 allow to enter quanitityu to buy
 */
 
-
+//Q: will buy item add cash to store cash?
+//If yes, need to redesign a bit
 
 void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
 	ojy.clrscr();
