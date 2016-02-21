@@ -16,11 +16,21 @@ double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
 
 
+
 void Supermarket::buyItem() { //INCOMPLETE
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
+	cout << "Item Name"; ojy.setw("Item Name", 23); cout << "Price" << endl;
+
 	for (int x = 0; x < itemInStore; x++) {
-		cout << x + 1 << ". " << item[x].getItemName() << endl;
+		// Print menu
+		cout << x + 1 << ". " << item[x].getItemName();
+		ojy.setw(item[x].getItemName(), 20);
+		cout << item[x].getPrice();
+		if (item[x].getQuantity() == 0) {
+			cout << "     Out Of Stock!";
+		}
+		cout << endl;
 	}
 	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
 	int selBuy = NULL;

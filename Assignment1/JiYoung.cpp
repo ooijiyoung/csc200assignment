@@ -54,3 +54,9 @@ void JiYoung::clrBuffer() {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+
+void JiYoung::setw(string s, int i) {
+	int len = i - s.length();
+	for (int x = 1; x <= len; x++)
+		cout << " ";
+}

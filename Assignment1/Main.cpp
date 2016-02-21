@@ -14,7 +14,7 @@ Supermarket store; //global var in this file
 int printMenu();
 
 int main() {
-
+	cout << fixed << showpoint << setprecision(2);
 	for (;;) {
 		printMenu();
 	}
