@@ -75,7 +75,9 @@ void Supermarket::finaceReport() {
 void Supermarket::stockReport() {
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
-	cout << "Item Name"; ojy.setw("Item Name", 20); cout << "Quantity"; ojy.setw("Price", 20); cout << "Weight" << endl;
+	cout << "Item Name"; ojy.setw("Item Name", 20); cout << "Quantity"; ojy.setw("Quantity", 20); 
+	cout << "Price"; ojy.setw("Price", 20); cout << "Weight"; ojy.setw("Weight",20);
+	cout << "Description"; ojy.setw("Description", 20); cout << endl;
 
 	for (int x = 0; x < itemInStore; x++) {
 		// Print menu
@@ -93,7 +95,7 @@ void Supermarket::stockReport() {
 }
 
 void Supermarket::stockMaintance() {
-	
+
 }
 
 Supermarket::Supermarket() {
