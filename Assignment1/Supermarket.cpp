@@ -15,9 +15,16 @@ string Supermarket::getStoreName() { return name; }
 double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
 
+/*
+//TODO: Least Priority
+Better "SHOP" function.
+allow to buy multiple item before return to menu
+allow to enter quanitityu to buy
+*/
 
 
-void Supermarket::buyItem() { //INCOMPLETE
+
+void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
 	cout << "Item Name"; ojy.setw("Item Name", 23); cout << "Price" << endl;
@@ -38,18 +45,23 @@ void Supermarket::buyItem() { //INCOMPLETE
 	while (isValidItem == false) {
 		selBuy = ojy.isValidInt();
 		if (selBuy > 0 && selBuy <= itemInStore) { //buy item
+			if (item[selBuy - 1].getQuantity() == 0) {
+				cout << "Item out of stock! No transection is made. Please retry later" << endl;
+				break;
+			}
 			isValidItem = true;
-			cout << "Item " << item[selBuy - 1].getItemName() << " Sold" << endl;
+			cout << "Item " << item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice() << endl;
+			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - 1);
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
-		else if (selBuy == 0) {
+		else if (selBuy == 0) { //exit
 			isValidItem = true; //exit and return to menu
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
-		else{
-			cout << "Invalid Entry, Please Retry: ";
+		else{ //404
+			cout << "Error 404 Item Not Found, Please Retry: ";
 		}
 	}//end while
 }
