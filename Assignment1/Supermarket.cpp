@@ -42,6 +42,7 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 	}
 	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
 	int selBuy = NULL;
+	int amount = NULL;
 	bool isValidItem = false;
 	while (isValidItem == false) {
 		selBuy = ojy.isValidInt();
@@ -51,7 +52,10 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 				break;
 			}
 			isValidItem = true;
-			cout << "Item " << item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice() << endl;
+			cout << "Enter the amount of items wanted :" << endl;
+			amount = ojy.isValidInt();
+			//after enter the amount, it needs to deduct the total quantity from the stock.txt
+			cout << amount << " "<< item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice() << endl;
 			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - 1);
 			cout << "Press any key to return to Menu";
 			ojy.getch();
@@ -118,7 +122,8 @@ void Supermarket::stockMaintance() {
 	cout << "Press 0 (zero) to exit.\nEnter Selection To Select Item: ";
 	int selBuy = NULL;
 	bool isValidItem = false;
-
+	//After selecting the item it can choose which section to edit 
+	//and from there enter the edited amount or info to replace the old data
 }
 
 Supermarket::Supermarket() {
