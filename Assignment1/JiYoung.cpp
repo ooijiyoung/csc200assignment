@@ -9,8 +9,7 @@ int JiYoung::isValidInt() {
 	bool isValid = false;
 	while (isValid == false) {
 		cin >> input;
-		cin.clear(); //clear buffer
-		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear buffer
+		clrBuffer();
 		try {
 			validInt = stoi(input);
 			isValid = true;
