@@ -75,18 +75,15 @@ void Supermarket::finaceReport() {
 void Supermarket::stockReport() {
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
-	cout << "Item Name"; ojy.setw("Item Name", 20); cout << "Quantity"; ojy.setw("Quantity", 20); 
-	cout << "Price"; ojy.setw("Price", 20); cout << "Weight"; ojy.setw("Weight",20);
-	cout << "Description"; ojy.setw("Description", 20); cout << endl;
-
+	cout << "Item Name"; ojy.setw("Item Name", 20); cout << "Quantity"; ojy.setw("Quantity", 20);
+	cout << endl;
+	
 	for (int x = 0; x < itemInStore; x++) {
 		// Print menu
 		cout << x + 1 << ". " << item[x].getItemName();
 		ojy.setw(item[x].getItemName(), 17);
 		cout << item[x].getQuantity();
-		cout << item[x].getPrice();
-		cout << item[x].getWeight();
-		cout << item[x].getDescript();
+		ojy.setw(item[x].getQuantity(), 17);
 		if (item[x].getQuantity() == 0) {
 			cout << "     Out Of Stock!";
 		}
