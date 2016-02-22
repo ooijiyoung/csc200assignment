@@ -26,6 +26,7 @@ allow to enter quanitity to buy
 //If yes, need to redesign a bit
 
 void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
+	//_PRINT MENU CALL FROM STOCK REPORT__
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
 	cout << "Item Name"; ojy.setw("Item Name", 23); cout << "Price" << endl;
@@ -40,6 +41,7 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 		}
 		cout << endl;
 	}
+	/// PENDING REMOVAL
 	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
 	int selBuy = NULL;
 	int amount = NULL;
@@ -52,11 +54,13 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 				break;
 			}
 			isValidItem = true;
-			cout << "Enter the amount of items wanted :" << endl;
+			cout << "Enter the amount of items wanted :";
 			amount = ojy.isValidInt();
 			//after enter the amount, it needs to deduct the total quantity from the stock.txt
+			// THE PRICE NEED TO * AMOUNT -.-
+			// NEED TO REDESIGN ABIT.......
 			cout << amount << " "<< item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice() << endl;
-			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - 1);
+			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - amount);
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
@@ -97,6 +101,10 @@ void Supermarket::stockReport() {
 
 void Supermarket::stockMaintance() {
 	ojy.clrscr();
+	//TODO: print a menu to do - edit item or add new item or add stock - ojy
+	cout << "1. Add New Item" << endl << "2. Edit Current Stock" << endl;
+
+
 	cout << name << " Shop" << endl << "Items in store" << endl;
 	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Quantity"; ojy.setw("Quantity", 12); 
 	cout << "Price"; ojy.setw("Price", 10); cout << "Weight"; ojy.setw("Weight", 10);
