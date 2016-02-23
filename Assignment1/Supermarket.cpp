@@ -99,12 +99,12 @@ void Supermarket::stockReport() {
 		ojy.setw(to_string(item[x].getQuantity()), 12);
 		cout << item[x].getPrice();
 		ojy.setw(to_string(item[x].getPrice()), 14);
-		cout << item[x].getWeight();
+		cout << item[x].getWeight() <<"g";
 		ojy.setw(to_string(item[x].getWeight()), 10);
 		cout << item[x].getDescript();
 		ojy.setw(item[x].getDescript(), 10);
 		if (item[x].getQuantity() == 0) {
-			cout << "     Out Of Stock!";
+			cout << "-This item is out of stock!";
 		}
 		cout << endl;
 	}
