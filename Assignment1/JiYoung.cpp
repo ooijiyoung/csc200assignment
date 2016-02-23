@@ -60,8 +60,7 @@ void JiYoung::setw(string s, int i) {
 		cout << " ";
 }
 
-/* 
-This method is designed to do nothing at all
-*/
+ 
+//This method is designed to do nothing at all
 void JiYoung::doNothing() {
 }
