@@ -59,3 +59,9 @@ void JiYoung::setw(string s, int i) {
 	for (int x = 1; x <= len; x++)
 		cout << " ";
 }
+
+/* 
+This method is designed to do nothing at all
+*/
+void JiYoung::doNothing() {
+}

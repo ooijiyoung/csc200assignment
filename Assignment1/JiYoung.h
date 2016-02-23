@@ -15,6 +15,7 @@ class JiYoung {
 		void getch();
 		void clrBuffer();
 		void setw(string,int);
+		void doNothing();
 };
 
 #endif // !_JIYOUNG_

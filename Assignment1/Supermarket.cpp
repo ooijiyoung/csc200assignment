@@ -21,19 +21,17 @@ Better "SHOP" function.
 allow to buy multiple item before return to menu
 allow to enter quanitity to buy
 */
-
-//Q: will buy item add cash to store cash?
-//If yes, need to redesign a bit
-
 void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
-	//_PRINT MENU CALL FROM STOCK REPORT__
+	
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
 	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Price"; ojy.setw("Price", 10);
 	cout << "Quantity"; cout << endl;
 
 	for (int x = 0; x < itemInStore; x++) {
-		// Print menu
+		// Print menu 
+		//DO NOT CALL THE listAllStock FUNCTION, this menu is slightly differernt
+		// I SAID DO NOT! 
 		cout << x + 1 << ". " << item[x].getItemName();
 		ojy.setw(item[x].getItemName(), 12);
 		cout << "RM" << item[x].getPrice();
@@ -45,10 +43,10 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 		}
 		cout << endl;
 	}
-	/// PENDING REMOVAL
+	
 	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
 	int selBuy = NULL;
-	int amount = NULL;
+	int amount = NULL; //TODO: AMOUNT VALIDATION
 	bool isValidItem = false;
 	while (isValidItem == false) {
 		selBuy = ojy.isValidInt();
@@ -212,5 +210,5 @@ Supermarket::Supermarket() {
 	fileIn.close();
 	
 }
-
+//TODO: SAVE STOCK TO STOCK.TXT
 Supermarket::~Supermarket(){} //destructor
