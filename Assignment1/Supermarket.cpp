@@ -36,8 +36,8 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 		// Print menu
 		cout << x + 1 << ". " << item[x].getItemName();
 		ojy.setw(item[x].getItemName(), 12);
-		cout << item[x].getPrice();
-		ojy.setw(to_string(item[x].getPrice()), 14);
+		cout << "RM" << item[x].getPrice();
+		ojy.setw(to_string(item[x].getPrice()), 12);
 		cout << item[x].getQuantity();
 		ojy.setw(to_string(item[x].getQuantity()), 12);
 		if (item[x].getQuantity() == 0) {
@@ -86,56 +86,14 @@ void Supermarket::finaceReport() {
 
 void Supermarket::stockReport() {
 	ojy.clrscr();
-	cout << name << " Shop" << endl << "Items in store" << endl;
-	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Quantity"; ojy.setw("Quantity", 12);
-	cout << "Price"; ojy.setw("Price", 10); cout << "Weight"; ojy.setw("Weight", 10);
-	cout << "Description" << endl;
-
-	for (int x = 0; x < itemInStore; x++) {
-		// Print menu
-		cout << x + 1 << ". " << item[x].getItemName();
-		ojy.setw(item[x].getItemName(), 12);
-		cout << item[x].getQuantity();
-		ojy.setw(to_string(item[x].getQuantity()), 12);
-		cout << item[x].getPrice();
-		ojy.setw(to_string(item[x].getPrice()), 14);
-		cout << item[x].getWeight() <<"g";
-		ojy.setw(to_string(item[x].getWeight()), 10);
-		cout << item[x].getDescript();
-		ojy.setw(item[x].getDescript(), 10);
-		if (item[x].getQuantity() == 0) {
-			cout << "-This item is out of stock!";
-		}
-		cout << endl;
-	}
+	cout << name << " Stock Report" << endl;
+	listAllStock();
+	cout << "Press any key to return to menu";
+	ojy.getch();
 }
 
 void Supermarket::stockMaintance() {
 	ojy.clrscr();
-	 
-	cout << name << " Shop" << endl << "Items in store" << endl;
-	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Quantity"; ojy.setw("Quantity", 12); 
-	cout << "Price"; ojy.setw("Price", 10); cout << "Weight"; ojy.setw("Weight", 10);
-	cout << "Description"<< endl;
-
-	for (int x = 0; x < itemInStore; x++) {
-		// Print menu
-		cout << x + 1 << ". " << item[x].getItemName();
-		ojy.setw(item[x].getItemName(), 12);
-		cout << item[x].getQuantity();
-		ojy.setw(to_string(item[x].getQuantity()), 12);
-		cout << item[x].getPrice();
-		ojy.setw(to_string(item[x].getPrice()), 14);
-		cout << item[x].getWeight();
-		ojy.setw(to_string(item[x].getWeight()), 10);
-		cout << item[x].getDescript();
-		ojy.setw(item[x].getDescript(), 10);
-		if (item[x].getQuantity() == 0) {
-			cout << "     Out Of Stock!";
-		}
-		cout << endl;
-	}
-	cout << "Press 0 (zero) to exit.\nEnter Selection To Select Item: ";
 	int selMain = NULL;
 	int selEditItem = NULL;
 	bool isValidItem = false;
@@ -157,7 +115,7 @@ void Supermarket::stockMaintance() {
 		}
 		else if (selMain == 2) {
 			isValidItem = true;
-
+			listAllStock();
 			//Choose which specific information to edit
 			ojy.getch();
 		}
@@ -167,11 +125,34 @@ void Supermarket::stockMaintance() {
 			ojy.getch();
 		}
 		else { //Invalid Input Message
-			cout << "Error 404 Item Not Found, Please Retry: ";
+			cout << "Invalid Entry, Please Retry: ";
 		}
 	}//end while
 }
 
+void Supermarket::listAllStock() {
+	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Quantity"; ojy.setw("Quantity", 12);
+	cout << "Price"; ojy.setw("Price", 10); cout << "Weight"; ojy.setw("Weight", 10);
+	cout << "Description" << endl;
+
+	for (int x = 0; x < itemInStore; x++) {
+		// Print menu
+		cout << x + 1 << ". " << item[x].getItemName();
+		ojy.setw(item[x].getItemName(), 12);
+		cout << item[x].getQuantity();
+		ojy.setw(to_string(item[x].getQuantity()), 12);
+		cout << "RM" << item[x].getPrice();
+		ojy.setw(to_string(item[x].getPrice()), 12);
+		cout << item[x].getWeight() << "g";
+		ojy.setw(to_string(item[x].getWeight()), 9);
+		cout << item[x].getDescript();
+		ojy.setw(item[x].getDescript(), 10);
+		if (item[x].getQuantity() == 0) {
+			cout << "-This item is out of stock!";
+		}
+		cout << endl;
+	}
+}
 Supermarket::Supermarket() {
 	name = "NULL";
 	cash = NULL;
