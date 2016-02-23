@@ -63,6 +63,7 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 			//after enter the amount, it needs to deduct the total quantity from the stock.txt
 			cout << amount << " "<< item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice()*amount << endl;
 			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - amount);
+			cash = cash + item[selBuy - 1].getPrice()*amount; 
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
@@ -80,20 +81,28 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 void Supermarket::finaceReport() {
 	//for array length itemprice * item quanitty
 	//TODO: list store cash
+	cout << cash << endl;
 }
 
 void Supermarket::stockReport() {
 	ojy.clrscr();
 	cout << name << " Shop" << endl << "Items in store" << endl;
-	cout << "Item Name"; ojy.setw("Item Name", 20); cout << "Quantity"; ojy.setw("Quantity", 20);
-	cout << endl;
-	
+	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Quantity"; ojy.setw("Quantity", 12);
+	cout << "Price"; ojy.setw("Price", 10); cout << "Weight"; ojy.setw("Weight", 10);
+	cout << "Description" << endl;
+
 	for (int x = 0; x < itemInStore; x++) {
 		// Print menu
 		cout << x + 1 << ". " << item[x].getItemName();
-		ojy.setw(item[x].getItemName(), 17);
+		ojy.setw(item[x].getItemName(), 12);
 		cout << item[x].getQuantity();
-		ojy.setw(to_string(item[x].getQuantity()), 17);
+		ojy.setw(to_string(item[x].getQuantity()), 12);
+		cout << item[x].getPrice();
+		ojy.setw(to_string(item[x].getPrice()), 14);
+		cout << item[x].getWeight();
+		ojy.setw(to_string(item[x].getWeight()), 10);
+		cout << item[x].getDescript();
+		ojy.setw(item[x].getDescript(), 10);
 		if (item[x].getQuantity() == 0) {
 			cout << "     Out Of Stock!";
 		}
