@@ -47,3 +47,11 @@ double Item::calcTotalVal() {
 	double totalPrice = price * static_cast<double>(quantity); 
 	return totalPrice;
 }
+//CONSTRUCTOR
+Item::Item() {
+	name = "NULL";
+	descript = "NULL";
+	quantity = NULL;
+	weight = NULL;
+	price = NULL;
+}

@@ -36,6 +36,8 @@ public:
 	//Something else
 	void printData();
 	double calcTotalVal();
+
+	Item(); //constructor
 	
 };
 

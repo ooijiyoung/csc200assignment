@@ -8,6 +8,7 @@
 using namespace std;
 
 extern JiYoung ojy;
+//Assignment Progress 80% Complete  as 23 Feb 2016
 
 // Supermarket implentation
 
@@ -77,9 +78,17 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 }
 
 void Supermarket::finaceReport() {
-	//for array length itemprice * item quanitty
+	ojy.clrscr();
+	cout << name << " Financial Report" << endl;
+	double assetValue=0;
+	for (int x = 0; x < itemInStore; x++) {
+		assetValue = assetValue + (item[x].getQuantity() * item[x].getPrice());
+	}
 	//TODO: list store cash
-	cout << cash << endl;
+	cout << "Total Stock Value: RM" << assetValue << endl;
+	cout << "Available cash: RM" << cash << endl;
+	cout << "Total Combined Asset Value  (Stock + Cash): RM" << cash + assetValue << endl;
+	ojy.getch();
 }
 
 void Supermarket::stockReport() {
@@ -106,8 +115,8 @@ void Supermarket::stockMaintance() {
 		if (selMain == 1) { //Edit information of the items
 			isValidItem = true;
 			cout << "Enter the New Item's Name ";
-			//Midway
-			
+			//later need key in name and item descp and yada yada
+			itemInStore++;
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
