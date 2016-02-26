@@ -71,13 +71,13 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
-		else{ //404
+		else{ //Error message for invalid input
 			cout << "Error 404 Item Not Found, Please Retry: ";
 		}
 	}//end while
 }
 
-void Supermarket::finaceReport() {
+void Supermarket::finaceReport() {//DONE
 	ojy.clrscr();
 	cout << name << " Financial Report" << endl;
 	double assetValue=0;
@@ -124,6 +124,8 @@ void Supermarket::stockMaintance() {
 			isValidItem = true;
 			listAllStock();
 			//Choose which specific information to edit
+			cout << "Enter the number for which you wish to edit the information of the item :" << endl;
+			
 			ojy.getch();
 		}
 		else if (selMain == 0) { //exit
