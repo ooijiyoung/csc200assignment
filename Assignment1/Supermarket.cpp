@@ -25,7 +25,7 @@ allow to enter quanitity to buy
 void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
 	
 	ojy.clrscr();
-	cout << name << " Shop" << endl << "Items in store" << endl;
+	cout << name << " Shop" << endl  << endl << "Items in store" << endl << endl;
 	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Price"; ojy.setw("Price", 10);
 	cout << "Quantity"; cout << endl;
 
@@ -40,7 +40,7 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 		cout << item[x].getQuantity();
 		ojy.setw(to_string(item[x].getQuantity()), 12);
 		if (item[x].getQuantity() == 0) {
-			cout << "     Out Of Stock!";
+			cout << "     NOTE - Out Of Stock!";
 		}
 		cout << endl;
 	}
@@ -66,28 +66,29 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
-		else if (selBuy == 0) { //exit
-			isValidItem = true; //exit and return to menu
+		else if (selBuy == 0) { //Exit
+			isValidItem = true; //Exit and return to menu
 			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
 		else{ //Error message for invalid input
-			cout << "Error 404 Item Not Found, Please Retry: ";
+			cout << "Error 404 Item Not Found, Please Retry With a Different input: " << endl;
 		}
 	}//end while
 }
 
 void Supermarket::finaceReport() {//DONE
 	ojy.clrscr();
-	cout << name << " Financial Report" << endl;
+	cout << name << " Financial Report" << endl << endl;
 	double assetValue=0;
 	for (int x = 0; x < itemInStore; x++) {
 		assetValue = assetValue + (item[x].getQuantity() * item[x].getPrice());
 	}
 	//TODO: list store cash
 	cout << "Total Stock Value: RM" << assetValue << endl;
-	cout << "Available cash: RM" << cash << endl;
-	cout << "Total Combined Asset Value  (Stock + Cash): RM" << cash + assetValue << endl;
+	cout << "Available cash: RM" << cash << endl << endl;
+	cout << "Total Combined Asset Value (Stock + Cash): RM" << cash + assetValue << endl;
+	cout << "Press any key to return to menu";
 	ojy.getch();
 }
 
@@ -108,14 +109,24 @@ void Supermarket::stockMaintance() {
 	//and from there enter the edited amount or info to replace the old data
 	
 	//TODO: print a menu to do - edit item or add new item or add stock - ojy
+	cout << "Choose from these 2 selections" << endl;
 	cout << "1. Add New Item" << endl << "2. Edit Current Stock" << endl;
 
 	while (isValidItem == false) {
 		selMain = ojy.isValidInt();
 		if (selMain == 1) { //Edit information of the items
 			isValidItem = true;
-			cout << "Enter the New Item's Name ";
 			//later need key in name and item descp and yada yada
+			cout << "Enter the New Item's Name : ";
+			
+			cout << "Enter the New Item's Quantity : ";
+
+			cout << "Enter the New Item's Price : ";
+
+			cout << "Enter the New Item's Weight : ";
+
+			cout << "Enter the New Item's Description : ";
+			
 			itemInStore++;
 			cout << "Press any key to return to Menu";
 			ojy.getch();
@@ -125,7 +136,8 @@ void Supermarket::stockMaintance() {
 			listAllStock();
 			//Choose which specific information to edit
 			cout << "Enter the number for which you wish to edit the information of the item :" << endl;
-			
+
+			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
 		else if (selMain == 0) { //exit
@@ -157,7 +169,7 @@ void Supermarket::listAllStock() {
 		cout << item[x].getDescript();
 		ojy.setw(item[x].getDescript(), 10);
 		if (item[x].getQuantity() == 0) {
-			cout << "-This item is out of stock!";
+			cout << " NOTE - This item is out of stock!";
 		}
 		cout << endl;
 	}

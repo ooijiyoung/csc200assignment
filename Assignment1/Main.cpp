@@ -24,7 +24,7 @@ int main() {
 
 int printMenu() {
 	ojy.clrscr();
-	cout << store.getStoreName() << " Sales System " << endl;
+	cout << store.getStoreName() << " Sales System " << endl << endl;
 	cout << "1. Shop" << endl << "2. Display financal report" << endl << "3. Display stock report" <<endl;
 	cout << "4. Stock Maintanace" <<endl << "5. Quit" << endl << "Enter Selection: "; 
 	int selection; 
@@ -47,9 +47,11 @@ int printMenu() {
 		store.stockMaintance();
 		break;
 	case 5:
-		cout << "Press any key to exit";
+		cout << "Press any key to exit" << endl;
+		cout << "Thank you for choosing " + store.getStoreName();
 		ojy.getch();
 		exit(0);
+		
 		break;
 	default:
 		//cout << "Invalid Entry" << endl; -replace with popup Error Message 
