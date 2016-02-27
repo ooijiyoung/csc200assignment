@@ -47,8 +47,9 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 	
 	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
 	int selBuy = NULL;
-	int amount = NULL; //TODO: AMOUNT VALIDATION
+	int amount = NULL; //AMOUNT VALIDATION Done, need further testing
 	bool isValidItem = false;
+	bool amntCheckPass = false;
 	while (isValidItem == false) {
 		selBuy = ojy.isValidInt();
 		if (selBuy > 0 && selBuy <= itemInStore) { //buy item
@@ -57,8 +58,19 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 				break;
 			}
 			isValidItem = true;
-			cout << "Enter the amount of items wanted :";
-			amount = ojy.isValidInt();
+			do {
+				cout << "Enter the amount of items wanted :";
+				amount = ojy.isValidInt();
+				if (amount > item[selBuy - 1].getQuantity()) {
+					cout << "Shop have only " << item[selBuy - 1].getQuantity() << " item left. Please enter value lower than available quanitity." << endl;
+				}
+				else if (amount < 0) {
+					cout << "Amount cannot be negative." << endl;
+				}
+				else {
+					amntCheckPass = true;
+				}
+			} while (amntCheckPass == false);
 			//after enter the amount, it needs to deduct the total quantity from the stock.txt
 			cout << amount << " "<< item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice()*amount << endl;
 			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - amount);
@@ -212,8 +224,8 @@ Supermarket::Supermarket() {
 				item[x].setWeight(stoi(line));
 				getline(fileIn, line, ':');//unit descp
 				item[x].setDescript(line);
-				cout << item[x].getItemName(); //TODO: remove after done
-				cout << item[x].getPrice() << item[x].getQuantity() << item[x].getWeight() << item[x].getDescript() <<endl;
+				//cout << item[x].getItemName(); //TODO: remove after done
+				//cout << item[x].getPrice() << item[x].getQuantity() << item[x].getWeight() << item[x].getDescript() <<endl;
 				x++;
 			}
 			itemInStore = x;
