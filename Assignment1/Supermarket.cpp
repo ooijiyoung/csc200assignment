@@ -144,8 +144,9 @@ void Supermarket::stockMaintance() {
 			getline(cin, iDesc);
 			string confirmItem;
 			
-			confirmItem = "Item Name: " + iName + "\nItem Quantity: " + to_string(iQuan) + "\nItem Price: "
-				+ ojy.doubleToStrPrecis(iPrice,2) + "\nItem Weight: " + ojy.doubleToStrPrecis(iWeight,2) + "\nItem Description: " + iDesc;
+			confirmItem = "Are you sure you want to add the following item?\nItem Name: " + iName + "\nItem Quantity: " + to_string(iQuan) + "\nItem Price: "
+				+ ojy.doubleToStrPrecis(iPrice,2) + "\nItem Weight: " + ojy.doubleToStrPrecis(iWeight,2) + "\nItem Description: " + iDesc
+				+ "\nNote: This Operation Could Not Be Undo";
 			
 			//convert String to LPCWSTR
 						
@@ -153,9 +154,26 @@ void Supermarket::stockMaintance() {
 			LPCWSTR msgConfmMsg = To.c_str();
 
 			
-			int response= MessageBox(NULL, msgConfmMsg, L"New Item", MB_YESNO | MB_ICONQUESTION);
-			itemInStore++;
-			cout << to_string(response) + " Press any key to return to Menu";
+			int response= MessageBox(NULL, msgConfmMsg, L"WindowsTitle", MB_YESNO | MB_ICONQUESTION);
+			//6 is yes , 7 is no
+			if (response == 6) {
+				// itemInStore is new Index Val
+				item[itemInStore].setItemName(iName);
+				item[itemInStore].setQuantity(iQuan);
+				item[itemInStore].setWeight(iWeight);
+				item[itemInStore].setPrice(iPrice);
+				item[itemInStore].setDescript(iDesc);
+				itemInStore++;
+				MessageBox(NULL, L"The Operation Completed Sucessfully", L"Error", MB_OK | MB_ICONERROR);
+			}
+			else if(response==7){
+				MessageBox(NULL, L"The Item is not added to the inventory", L"Information", MB_OK | MB_ICONINFORMATION);
+			}
+			else {
+				cout << "This Wont Happen Just To Make Sure ";
+			}
+			
+			cout << "Press any key to return to Menu";
 			ojy.getch();
 		}
 		else if (selMain == 2) {

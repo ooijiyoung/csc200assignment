@@ -67,6 +67,7 @@ void JiYoung::setw(string s, int i) {
 void JiYoung::doNothing() {
 }
 
+//Use to fix pres to string
 string JiYoung::doubleToStrPrecis(double a, int n)
 {
 	ostringstream out;
