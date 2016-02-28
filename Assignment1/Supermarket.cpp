@@ -128,19 +128,34 @@ void Supermarket::stockMaintance() {
 		selMain = ojy.isValidInt();
 		if (selMain == 1) { //Edit information of the items
 			isValidItem = true;
+			string iName, iDesc;
+			int iQuan;
+			double iPrice, iWeight;
 			//later need key in name and item descp and yada yada
 			cout << "Enter the New Item's Name : ";
-			
+			getline(cin, iName);
 			cout << "Enter the New Item's Quantity : ";
-
+			iQuan = ojy.isValidInt();
 			cout << "Enter the New Item's Price : ";
-
+			iPrice = ojy.isValidDouble();
 			cout << "Enter the New Item's Weight : ";
-
+			iWeight = ojy.isValidDouble();
 			cout << "Enter the New Item's Description : ";
+			getline(cin, iDesc);
+			string confirmItem;
 			
+			confirmItem = "Item Name: " + iName + "\nItem Quantity: " + to_string(iQuan) + "\nItem Price: "
+				+ ojy.doubleToStrPrecis(iPrice,2) + "\nItem Weight: " + ojy.doubleToStrPrecis(iWeight,2) + "\nItem Description: " + iDesc;
+			
+			//convert String to LPCWSTR
+						
+			wstring To(confirmItem.begin(), confirmItem.end());
+			LPCWSTR msgConfmMsg = To.c_str();
+
+			
+			int response= MessageBox(NULL, msgConfmMsg, L"New Item", MB_YESNO | MB_ICONQUESTION);
 			itemInStore++;
-			cout << "Press any key to return to Menu";
+			cout << to_string(response) + " Press any key to return to Menu";
 			ojy.getch();
 		}
 		else if (selMain == 2) {

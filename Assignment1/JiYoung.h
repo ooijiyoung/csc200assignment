@@ -16,6 +16,7 @@ class JiYoung {
 		void clrBuffer();
 		void setw(string,int);
 		void doNothing();
+		string doubleToStrPrecis(double, int);
 };
 
 #endif // !_JIYOUNG_

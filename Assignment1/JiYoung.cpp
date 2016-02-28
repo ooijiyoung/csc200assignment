@@ -1,5 +1,7 @@
 #include "JiYoung.h"
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 //This method is to check is it a valid Int Value , and prvent buffer garbage
@@ -29,7 +31,7 @@ double JiYoung::isValidDouble() {
 		cin >> input;
 		clrBuffer();
 		try {
-			validDou = stoi(input);
+			validDou = stod(input);
 			isValid = true;
 		}
 		catch (std::exception) {
@@ -63,4 +65,11 @@ void JiYoung::setw(string s, int i) {
  
 //This method is designed to do nothing at all
 void JiYoung::doNothing() {
+}
+
+string JiYoung::doubleToStrPrecis(double a, int n)
+{
+	ostringstream out;
+	out << fixed << showpoint << setprecision(2) << a;
+	return out.str();
 }
