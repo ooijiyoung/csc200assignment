@@ -131,7 +131,7 @@ void Supermarket::stockMaintance() {
 			string iName, iDesc;
 			int iQuan;
 			double iPrice, iWeight;
-			//later need key in name and item descp and yada yada
+			//TODO : PRICE AND STOCK CANNOT BE LOWER THAN 0
 			cout << "Enter the New Item's Name : ";
 			getline(cin, iName);
 			cout << "Enter the New Item's Quantity : ";
