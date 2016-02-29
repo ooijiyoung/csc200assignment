@@ -21,7 +21,7 @@ private:
 public:
 	//getter
 	string getItemName();
-	string getDescript();
+	string getDescript(); 
 	int getQuantity();
 	int getWeight();
 	double getPrice();
