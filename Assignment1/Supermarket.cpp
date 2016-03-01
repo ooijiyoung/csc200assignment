@@ -1,6 +1,7 @@
 #include "Supermarket.h"
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <string>
 #include <Windows.h>
 #include "JiYoung.h"
@@ -139,7 +140,7 @@ void Supermarket::stockMaintance() {
 			cout << "Enter the New Item's Price : ";
 			iPrice = ojy.isValidDouble();
 			cout << "Enter the New Item's Weight : ";
-			iWeight = ojy.isValidDouble();
+			iWeight = ojy.isValidInt();
 			cout << "Enter the New Item's Description : ";
 			getline(cin, iDesc);
 			string confirmItem;
@@ -227,8 +228,6 @@ Supermarket::Supermarket() {
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
-
-		cout << "File Open"; //DEBUG
 		//TODO : Need to seperate the string and put into correct var =.= 
 		string line;
 		//First Line
@@ -238,8 +237,7 @@ Supermarket::Supermarket() {
 		stock = stoi(line);
 		getline(fileIn, line, ':');//cash on hand
 		cash = stod(line);
-		
-		cout << "name= " << name << " stock= " << stock << " cash= " << cash << endl; //DEBUG TO BE REMOVED
+
 		//end of first line
 
 		int x = 0; //array need x 
@@ -279,4 +277,23 @@ Supermarket::Supermarket() {
 	
 }
 //TODO: SAVE STOCK TO STOCK.TXT
-Supermarket::~Supermarket(){} //destructor
+Supermarket::~Supermarket(){
+	ojy.clrscr();
+	cout << "Saving Data... Please Wait" << endl;
+	ofstream fileOut;
+	fileOut.open("Stock.txt");
+	if (fileOut.is_open()) {
+		fileOut << fixed << showpoint << setprecision(2);
+		//Save to txt
+		string line;
+		//First Line
+		fileOut << name << ":" << stock << ":" << cash << ":" << endl;
+		int x = 0;
+		while (x < itemInStore) {
+			fileOut << item[x].getItemName() << ":" << item[x].getQuantity() << ":" << item[x].getPrice() << ":" << item[x].getWeight() << ":" << item[x].getDescript();
+			if (x < itemInStore - 1)
+				fileOut << ":" << endl;
+			x++;
+		}
+	}
+} //destructor
