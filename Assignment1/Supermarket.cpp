@@ -457,4 +457,3 @@ Supermarket::~Supermarket(){
 	}
 
 } //destructor
-
