@@ -9,7 +9,6 @@
 using namespace std;
 
 extern JiYoung ojy;
-//Assignment Progress 80% Complete  as 23 Feb 2016
 
 // Supermarket implentation
 string Supermarket::getStoreName() { return name; }

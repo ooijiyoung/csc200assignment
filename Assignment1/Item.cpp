@@ -6,8 +6,7 @@
 /*
 Ver 1.0
 7 Feb 2016
-Author: Ooi Ji Young
-DO NOT MODIFY
+Author: Ooi Ji Young, Low Chun Shiong
 */
 
 using namespace std;

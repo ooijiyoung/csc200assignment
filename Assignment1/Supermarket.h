@@ -31,7 +31,5 @@ public:
 	~Supermarket(); //desturctor 
 };
 
-
-
 #endif // _SUPERMARKET_
 

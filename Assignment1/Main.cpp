@@ -51,7 +51,6 @@ int printMenu() {
 		cout << "Thank you for choosing " + store.getStoreName();
 		ojy.getch();
 		exit(0);
-		
 		break;
 	default:
 		//cout << "Invalid Entry" << endl; -replace with popup Error Message 
