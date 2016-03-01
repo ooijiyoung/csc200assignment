@@ -26,6 +26,7 @@ public:
 	void stockReport();
 	void stockMaintance();
 	void listAllStock();
+	void errormsg();
 	Supermarket(); //constructor
 	~Supermarket(); //desturctor 
 };

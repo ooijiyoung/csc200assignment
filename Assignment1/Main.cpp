@@ -49,6 +49,7 @@ int printMenu() {
 	case 5:
 		cout << "Press any key to exit" << endl;
 		cout << "Thank you for choosing " + store.getStoreName();
+		ojy.about();
 		ojy.getch();
 		exit(0);
 		

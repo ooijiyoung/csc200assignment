@@ -3,7 +3,6 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
-#include <sstream>
 #include <Windows.h>
 #include "JiYoung.h"
 #define NOMINMAX
@@ -13,7 +12,6 @@ extern JiYoung ojy;
 //Assignment Progress 80% Complete  as 23 Feb 2016
 
 // Supermarket implentation
-
 string Supermarket::getStoreName() { return name; }
 double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
@@ -119,7 +117,7 @@ void Supermarket::stockMaintance() {
 	
 	//TODO: print a menu to do - edit item or add new item or add stock - ojy
 	cout << "Choose from these 2 selections" << endl;
-	cout << "1. Add New Item" << endl << "2. Edit Current Stock" << endl;
+	cout << "1. Add New Item" << endl << "2. Edit Current Stock" << endl << "3. Delete An Item" << endl;
 	cout << "Press 0 to return to menu: ";
 	while (isValidItem == false) {
 		selMain = ojy.isValidInt();
@@ -132,11 +130,11 @@ void Supermarket::stockMaintance() {
 			cout << "Enter the New Item's Name : ";
 			getline(cin, iName);
 			cout << "Enter the New Item's Quantity : ";
-			iQuan = ojy.isValidInt();
+			iQuan = ojy.largerThanZeroInt();
 			cout << "Enter the New Item's Price : ";
-			iPrice = ojy.isValidDouble();
+			iPrice = ojy.largerThanZeroDouble();
 			cout << "Enter the New Item's Weight : ";
-			iWeight = ojy.isValidInt();
+			iWeight = ojy.largerThanZeroInt();
 			cout << "Enter the New Item's Description : ";
 			getline(cin, iDesc);
 			string confirmItem;
@@ -164,7 +162,7 @@ void Supermarket::stockMaintance() {
 				MessageBox(NULL, L"The Operation Completed Sucessfully", L"Information", MB_OK | MB_ICONINFORMATION);
 			}
 			else if(response==7){
-				MessageBox(NULL, L"The Item is not added to the inventory", L"Information", MB_OK | MB_ICONINFORMATION);
+				MessageBox(NULL, L"The Item is not added to the inventory", L"Information", MB_OK | MB_ICONEXCLAMATION);
 			}
 			else {
 				cout << "This Wont Happen Just To Make Sure ";
@@ -174,13 +172,143 @@ void Supermarket::stockMaintance() {
 			ojy.getch();
 		}
 		else if (selMain == 2) {
-			isValidItem = true;
+			int selEdit;
 			listAllStock();
 			//Choose which specific information to edit
-			cout << "Enter the number for which you wish to edit the information of the item :" << endl;
+			cout << "Enter the number for which you wish to edit the information of the item" << endl;
+			cout << "Enter 0 to return to menu: ";
+			while (isValidItem == false) {
+				selEdit = ojy.isValidInt();
+				if (selEdit > 0 && selEdit <= itemInStore) { //edit item
+					bool doneEdit = false;
+					isValidItem = true;
+					string iName = item[selEdit - 1].getItemName(), iDesc = item[selEdit - 1].getDescript();
+					int iQuan = item[selEdit - 1].getQuantity(), iWeight = item[selEdit - 1].getWeight();
+					double iPrice = item[selEdit - 1].getPrice();
+					while (doneEdit == false) {
+						ojy.clrscr();
+						cout << "What do you want to edit?" << endl;
+						cout << "1. Item Name       : " << iName << endl;
+						cout << "2. Item Quantity   : " << iQuan << endl;
+						cout << "3. Item Price      : " << iPrice << endl;
+						cout << "4. Item Weight     : " << iWeight << endl;
+						cout << "5. Item Description: " << iDesc << endl;
+						cout << "Any changes will be reflected above\nPress 0 to exit edit mode: ";
+						int selection;
+						cin >> selection; //Input Validation
+						ojy.clrBuffer();
+						switch (selection)
+						{
+						case 1:
+							cout << "Enter New Name: ";
+							getline(cin, iName);
+							break;
+						case 2:
+							cout << "Enter New Quantity: ";
+							iQuan = ojy.largerThanZeroInt();
+							break;
+						case 3:
+							cout << "Enter New Price: ";
+							iPrice = ojy.largerThanZeroDouble();
+							break;
+						case 4:
+							cout << "Enter New Weight: ";
+							iWeight = ojy.largerThanZeroInt();
+							break;
+						case 5:
+							cout << "Enter New Description" << endl;
+							getline(cin, iDesc);
+							break;
+						case 0:
+							doneEdit = true; //exit
+							break;
+						default:
+							//cout << "Invalid Entry" << endl; -replace with popup Error Message 
+							MessageBox(NULL, L"Invalid Entry\nPlease Try Again!", L"Error", MB_OK | MB_ICONERROR);
+							break;
+						}//end switch
+						
+					}//end while
+
+					//give confirmation
+					string confirmMsg = "Confirm To Commit Changes?\nPrevious Item\t\t\tEditied Item\nItem Name: " + item[selEdit - 1].getItemName() + "\t\t\t" + iName +
+						"\nItem Quantity: " + to_string(item[selEdit - 1].getQuantity()) + "\t\t\t" + to_string(iQuan) + "\nItem Price: "
+						+ ojy.doubleToStrPrecis(item[selEdit - 1].getPrice(), 2) + "\t\t\t" + ojy.doubleToStrPrecis(iPrice, 2) +
+						"\nItem Weight: " + ojy.doubleToStrPrecis(item[selEdit - 1].getWeight(), 2) + "\t\t\t" + ojy.doubleToStrPrecis(iWeight, 2)
+						+ "\nItem Description: " + item[selEdit - 1].getDescript() + "\t\t" + iDesc
+						+ "\n\nNote: This Operation Could Not Be Undo";
+					wstring To(confirmMsg.begin(), confirmMsg.end());
+					LPCWSTR msgConfmMsg = To.c_str();
+					int response = MessageBox(NULL, msgConfmMsg, L"Confirmation", MB_YESNO | MB_ICONQUESTION);
+					//6 is yes , 7 is no
+					if (response == 6) {
+						// itemInStore is new Index Val
+						item[selEdit - 1].setItemName(iName);
+						item[selEdit - 1].setQuantity(iQuan);
+						item[selEdit - 1].setWeight(iWeight);
+						item[selEdit - 1].setPrice(iPrice);
+						item[selEdit - 1].setDescript(iDesc);
+						MessageBox(NULL, L"The Operation Completed Sucessfully", L"Information", MB_OK | MB_ICONINFORMATION);
+					}
+					else if (response == 7) {
+						MessageBox(NULL, L"The Item is not edited", L"Information", MB_OK | MB_ICONEXCLAMATION);
+					}
+				}
+				else if (selEdit == 0) { //Exit
+					isValidItem = true; //Exit and return to menu
+				}
+				else { //Error message for invalid input
+					cout << "Error 404 Item Not Found, Please Retry With a Different input: " << endl;
+				}
+			}//end while
 
 			cout << "Press any key to return to Menu";
 			ojy.getch();
+		}
+		else if (selMain == 3) {
+			int selDelete;
+			listAllStock();
+			cout << "Enter the number for which you wish to delete the item" << endl;
+			cout << "Enter 0 to return to menu: ";
+			while (isValidItem == false) {
+				selDelete = ojy.isValidInt();
+				if (selDelete > 0 && selDelete <= itemInStore) { //edit item
+					bool doneEdit = false;
+					isValidItem = true;
+					ojy.clrscr();
+					//give confirmation
+					string confirmMsg = "Confirm To Delete This Item?\nItem Name\t: " + item[selDelete - 1].getItemName()
+						+ "\nItem Quantity\t: " + to_string(item[selDelete - 1].getQuantity()) + 
+						  "\nItem Price \t: " + ojy.doubleToStrPrecis(item[selDelete - 1].getPrice(),2) +
+						  "\nItem Weight\t: " + ojy.doubleToStrPrecis(item[selDelete - 1].getWeight(),2) + 
+						  "\nItem Description\t: " + item[selDelete - 1].getDescript()
+						+"\n\nNote: This item will be gone forever";
+						
+					wstring To(confirmMsg.begin(), confirmMsg.end());
+					LPCWSTR msgConfmMsg = To.c_str();
+					int response = MessageBox(NULL, msgConfmMsg, L"Confirmation", MB_YESNO | MB_ICONQUESTION);
+					//6 is yes , 7 is no
+					if (response == 6) {
+						for (int i = selDelete-1; i < itemInStore; ++i)
+							item[i] = item[i + 1];
+						itemInStore--;
+						MessageBox(NULL, L"The Item is deleted sucessfully, you wont be seeing this item anymore", L"Information", MB_OK | MB_ICONINFORMATION);
+					}
+					else if (response == 7) {
+						MessageBox(NULL, L"The Item is not deleted", L"Information", MB_OK | MB_ICONEXCLAMATION);
+					}
+				}
+				else if (selDelete == 0) { //Exit
+					isValidItem = true; //Exit and return to menu
+				}
+				else { //Error message for invalid input
+					cout << "Error 404 Item Not Found, Please Retry With a Different input: " << endl;
+				}
+			}//end while
+
+			cout << "Press any key to return to Menu";
+			ojy.getch();
+			
 		}
 		else if (selMain == 0) { //exit
 			isValidItem = true; //exit and return to menu
@@ -216,6 +344,30 @@ void Supermarket::listAllStock() {
 		cout << endl;
 	}
 }
+
+void Supermarket::errormsg() {
+	::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);//Make Full screen
+	system("color 9F");
+	//DONT ASK ME TO EXPLAIN THIS -- I only know its works to change font
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Obtain the Console handle
+	PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx = new CONSOLE_FONT_INFOEX();
+	lpConsoleCurrentFontEx->cbSize = sizeof(CONSOLE_FONT_INFOEX); // set the size of the CONSOLE_FONT_INFOEX
+	GetCurrentConsoleFontEx(hConsole, 0, lpConsoleCurrentFontEx); // get the current value
+																  // set size to be 8x18, the default size is 8x16
+	lpConsoleCurrentFontEx->dwFontSize.X = 8;
+	lpConsoleCurrentFontEx->dwFontSize.Y = 22;
+
+	SetCurrentConsoleFontEx(hConsole, 0, lpConsoleCurrentFontEx);// submit the settings
+																 //change font size
+	cout << "\nA problem has been detected and this program has been shut down to prevent damage to your computer.\n"
+		<< "\nFILE_IRQL_NOT_FOUND_OR_MISSING"
+		<< "\n\nIf this is the first time you've seen this error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:"
+		<< "\n\nCheck to be sure you have the \"Stock.txt\" file in the same directory. \nIf the file is located in the same directory,\ndisable the Read-Only mode.\nTry to delete and recreate \"Stock.txt\" file. "
+		<< "\n\nIf problems continue, disable or remove any newly installed source code.\nIf you need to use Safe Mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup options, and then\nselect Safe Mode.";
+	cout << "\n\nTechnical Information:\n\n ***STOP: 0x034404404 (0x0404F403, 0x0E340400, 0x00000404)\n\n\n";
+	cout << "Press any key to exit the program as this program cannot be continue";
+}
+
 Supermarket::Supermarket() {
 	name = "NULL";
 	cash = NULL;
@@ -272,31 +424,13 @@ Supermarket::Supermarket() {
 	{
 		//error message - MUST BE TERMINATED
 		MessageBox(NULL, L"Unable to read or open file.\n Please make sure \"Stock.txt\" is accessible and in the same directory", L"Error", MB_OK | MB_ICONERROR);
-		::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);//Make Full screen
-		system("color 9F");
-		//DONT ASK ME TO EXPLAIN THIS -- I only know its works to change font
-		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Obtain the Console handle
-		PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx = new CONSOLE_FONT_INFOEX();
-		lpConsoleCurrentFontEx->cbSize = sizeof(CONSOLE_FONT_INFOEX); // set the size of the CONSOLE_FONT_INFOEX
-		GetCurrentConsoleFontEx(hConsole, 0, lpConsoleCurrentFontEx); // get the current value
-		// set size to be 8x18, the default size is 8x16
-		lpConsoleCurrentFontEx->dwFontSize.X = 8;
-		lpConsoleCurrentFontEx->dwFontSize.Y = 22;
-		
-		SetCurrentConsoleFontEx(hConsole, 0, lpConsoleCurrentFontEx);// submit the settings
-		//change font size
-		cout << "\nA problem has been detected and this program has been shut down to prevent damage to your computer.\n"
-			<< "\nFILE_IRQL_NOT_FOUND_OR_MISSING"
-			<< "\n\nIf this is the first time you've seen this error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:"
-			<< "\n\nCheck to be sure you have the \"Stock.txt\" file in the same directory. \nIf the file is located in the same directory,\ndisable the Read-Only mode.\nTry to delete and recreate \"Stock.txt\" file. "
-			<< "\n\nIf problems continue, disable or remove any newly installed source code.\nIf you need to use Safe Mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup options, and then\nselect Safe Mode.";
-		cout << "\n\nTechnical Information:\n\n ***STOP: 0x034404404 (0x0404F403, 0x0E340400, 0x00000404)\n\n\n";
-		cout << "Press any key to exit the program as this program cannot be continue";
+		errormsg();
 		ojy.getch();
 		exit(1);
 	}
 	fileIn.close();
-	
+	string title = "title " + name + " Sales System";
+	system(title.c_str());
 }
 //TODO: SAVE STOCK TO STOCK.TXT
 Supermarket::~Supermarket(){
@@ -320,6 +454,8 @@ Supermarket::~Supermarket(){
 	}
 	else {
 		MessageBox(NULL, L"Exception opening/reading file. File might be locked or inused.", L"Error", MB_OK | MB_ICONERROR);
+		errormsg();
 	}
 
 } //destructor
+

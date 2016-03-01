@@ -1,6 +1,6 @@
-SJ Supermarket:100:1234.56:
-Licorice:500:0.50:50:metre:
+SJ Supermarket:100:1235.06:
+Licorice:499:0.50:50:metre:
 Bread buns:1000:2.00:500:6-pack:
 Cabbage:10:1.90:300:each:
-Egg:0:1.90:300:each:
+Egg:100:0.50:25:each:
 Rice:25:15.90:1000:each

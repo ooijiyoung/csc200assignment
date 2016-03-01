@@ -42,8 +42,7 @@ double JiYoung::isValidDouble() {
 }
 
 void JiYoung::clrscr() {
-	//system("cls");
-	cout << endl << "CLRSCR IS TEMPORARY DISABLED FOR DEBUGGING PURPOSE" << endl;
+	system("cls");
 }
 
 void JiYoung::getch() {
@@ -72,4 +71,34 @@ string JiYoung::doubleToStrPrecis(double a, int n)
 	ostringstream out;
 	out << fixed << showpoint << setprecision(2) << a;
 	return out.str();
+}
+
+int JiYoung::largerThanZeroInt() {
+	int validInt;
+	bool isValid = false;
+	while (isValid == false) {
+		validInt = isValidInt();
+		if (validInt > 0) {
+			isValid = true;
+		}
+		else {
+			cout << "Invalid Entry, Please Retry: ";
+		}
+	}
+	return validInt;
+}
+
+double JiYoung::largerThanZeroDouble() {
+	double validDouble;
+	bool isValid = false;
+	while (isValid == false) {
+		validDouble = isValidDouble();
+		if (validDouble > 0) {
+			isValid = true;
+		}
+		else {
+			cout << "Invalid Entry, Please Retry: ";
+		}
+	}
+	return validDouble;
 }
