@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-//JiYoung's Utility Class :P
+//VERSION 2.0
 
 #ifndef _JIYOUNG_
 #define _JIYOUNG_
@@ -17,7 +17,6 @@ class JiYoung {
 		void setw(string,int);
 		void doNothing();
 		string doubleToStrPrecis(double, int);
-
 };
 
 #endif // !_JIYOUNG_

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <sstream>
 #include <Windows.h>
 #include "JiYoung.h"
 #define NOMINMAX
@@ -17,12 +18,7 @@ string Supermarket::getStoreName() { return name; }
 double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
 
-/*
-//TODO: Least Priority
-Better "SHOP" function.
-allow to buy multiple item before return to menu
-allow to enter quanitity to buy
-*/
+
 void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
 	
 	ojy.clrscr();
@@ -124,14 +120,14 @@ void Supermarket::stockMaintance() {
 	//TODO: print a menu to do - edit item or add new item or add stock - ojy
 	cout << "Choose from these 2 selections" << endl;
 	cout << "1. Add New Item" << endl << "2. Edit Current Stock" << endl;
-
+	cout << "Press 0 to return to menu: ";
 	while (isValidItem == false) {
 		selMain = ojy.isValidInt();
 		if (selMain == 1) { //Edit information of the items
 			isValidItem = true;
 			string iName, iDesc;
-			int iQuan;
-			double iPrice, iWeight;
+			int iQuan, iWeight;
+			double iPrice ;
 			//TODO : PRICE AND STOCK CANNOT BE LOWER THAN 0
 			cout << "Enter the New Item's Name : ";
 			getline(cin, iName);
@@ -155,7 +151,7 @@ void Supermarket::stockMaintance() {
 			LPCWSTR msgConfmMsg = To.c_str();
 
 			
-			int response= MessageBox(NULL, msgConfmMsg, L"WindowsTitle", MB_YESNO | MB_ICONQUESTION);
+			int response= MessageBox(NULL, msgConfmMsg, L"Confirmation", MB_YESNO | MB_ICONQUESTION);
 			//6 is yes , 7 is no
 			if (response == 6) {
 				// itemInStore is new Index Val
@@ -165,7 +161,7 @@ void Supermarket::stockMaintance() {
 				item[itemInStore].setPrice(iPrice);
 				item[itemInStore].setDescript(iDesc);
 				itemInStore++;
-				MessageBox(NULL, L"The Operation Completed Sucessfully", L"Error", MB_OK | MB_ICONERROR);
+				MessageBox(NULL, L"The Operation Completed Sucessfully", L"Information", MB_OK | MB_ICONINFORMATION);
 			}
 			else if(response==7){
 				MessageBox(NULL, L"The Item is not added to the inventory", L"Information", MB_OK | MB_ICONINFORMATION);
@@ -261,17 +257,43 @@ Supermarket::Supermarket() {
 			}
 			itemInStore = x;
 		}
-		catch (const std::exception&)
+		catch (const std::exception &exc)
 		{
-			MessageBox(NULL, L"Something wrong with \"Stock.txt\" file!", L"Error", MB_OK | MB_ICONERROR); //make sure last EOF dont have the ':'
+			string buffer;
+			buffer = exc.what();
+			string errormsg = "Something wrong with \"Stock.txt\" file!\n Error Code: " + buffer;
+			wstring To(errormsg.begin(), errormsg.end());
+			LPCWSTR finalErrMsg = To.c_str();
+			MessageBox(NULL, finalErrMsg , L"Error", MB_OK | MB_ICONERROR); //make sure last EOF dont have the ':'
 		}
 
-		
-		//read into item array
 	}
 	else 
 	{
-		cout << "Something bad happened!"; //THROW NEW EXCEPTION
+		//error message - MUST BE TERMINATED
+		MessageBox(NULL, L"Unable to read or open file.\n Please make sure \"Stock.txt\" is accessible and in the same directory", L"Error", MB_OK | MB_ICONERROR);
+		::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);//Make Full screen
+		system("color 9F");
+		//DONT ASK ME TO EXPLAIN THIS -- I only know its works to change font
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Obtain the Console handle
+		PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx = new CONSOLE_FONT_INFOEX();
+		lpConsoleCurrentFontEx->cbSize = sizeof(CONSOLE_FONT_INFOEX); // set the size of the CONSOLE_FONT_INFOEX
+		GetCurrentConsoleFontEx(hConsole, 0, lpConsoleCurrentFontEx); // get the current value
+		// set size to be 8x18, the default size is 8x16
+		lpConsoleCurrentFontEx->dwFontSize.X = 8;
+		lpConsoleCurrentFontEx->dwFontSize.Y = 22;
+		
+		SetCurrentConsoleFontEx(hConsole, 0, lpConsoleCurrentFontEx);// submit the settings
+		//change font size
+		cout << "\nA problem has been detected and this program has been shut down to prevent damage to your computer.\n"
+			<< "\nFILE_IRQL_NOT_FOUND_OR_MISSING"
+			<< "\n\nIf this is the first time you've seen this error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:"
+			<< "\n\nCheck to be sure you have the \"Stock.txt\" file in the same directory. \nIf the file is located in the same directory,\ndisable the Read-Only mode.\nTry to delete and recreate \"Stock.txt\" file. "
+			<< "\n\nIf problems continue, disable or remove any newly installed source code.\nIf you need to use Safe Mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup options, and then\nselect Safe Mode.";
+		cout << "\n\nTechnical Information:\n\n ***STOP: 0x034404404 (0x0404F403, 0x0E340400, 0x00000404)\n\n\n";
+		cout << "Press any key to exit the program as this program cannot be continue";
+		ojy.getch();
+		exit(1);
 	}
 	fileIn.close();
 	
@@ -296,4 +318,8 @@ Supermarket::~Supermarket(){
 			x++;
 		}
 	}
+	else {
+		MessageBox(NULL, L"Exception opening/reading file. File might be locked or inused.", L"Error", MB_OK | MB_ICONERROR);
+	}
+
 } //destructor
