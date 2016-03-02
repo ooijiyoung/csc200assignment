@@ -10,12 +10,23 @@ Author: Ooi Ji Young, Low Chun Shiong
 */
 
 using namespace std;
+
 //Item method implentation
-string Item::getItemName() { return name; }
-string Item::getDescript() { return descript; }
-int Item::getQuantity() { return quantity; }
-int Item::getWeight() { return weight; }
-double Item::getPrice() { return price; }
+string Item::getItemName() { 
+	return name; 
+}
+string Item::getDescript() { 
+	return descript; 
+}
+int Item::getQuantity() { 
+	return quantity; 
+}
+int Item::getWeight() { 
+	return weight; 
+}
+double Item::getPrice() { 
+	return price; 
+}
 
 //item setter 
 void Item::setItemName(string n) {
@@ -39,12 +50,12 @@ void Item::printData() {
 	cout << name << " has " << quantity << " units of " << descript << ", weight " << weight << "g, RM" << price;
 }
 
+//calculate the total value held in that item type.
 double Item::calcTotalVal() {
-	//A function to determine the total value held in that item type.
 	double totalPrice = price * static_cast<double>(quantity); 
 	return totalPrice;
 }
-//CONSTRUCTOR
+//constructor
 Item::Item() {
 	name = "NULL";
 	descript = "NULL";

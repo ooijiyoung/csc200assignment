@@ -14,7 +14,7 @@ private:
 	double cash; //store cash
 	int stock; //store stock 
 	int itemInStore; //how many item in the stock.txt
-	Item item[100];
+	Item item[100];//capacity of the items that can be stored
 public:
 	string getStoreName();
 	double getStoreCash();

@@ -15,7 +15,7 @@ string Supermarket::getStoreName() { return name; }
 double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
 
-
+//shop for items
 void Supermarket::buyItem() {
 	
 	ojy.clrscr();
@@ -79,6 +79,7 @@ void Supermarket::buyItem() {
 	}//end while
 }
 
+//financial report
 void Supermarket::finaceReport() {
 	ojy.clrscr();
 	cout << name << " Financial Report" << endl << endl;
