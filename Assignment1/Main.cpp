@@ -27,7 +27,7 @@ int printMenu() {
 	cout << store.getStoreName() << " Sales System " << endl << endl;
 	cout << "1. Shop" << endl << "2. Display financal report" << endl << "3. Display stock report" <<endl;
 	cout << "4. Stock Maintanace" <<endl << "5. Quit" << endl << "Enter Selection: "; 
-	int selection; 
+	int selection;//The Selection of the menu 
 	cin >> selection; //Input Validation
 
 	ojy.clrBuffer();
@@ -47,16 +47,16 @@ int printMenu() {
 		store.stockMaintance();
 		break;
 	case 5:
-		cout << "Press any key to exit" << endl;
 		cout << "Thank you for choosing " + store.getStoreName();
+		cout << "Press any key to exit" << endl;
 		ojy.getch();
 		exit(0);
 		break;
 	default:
-		//cout << "Invalid Entry" << endl; -replace with popup Error Message 
+		//print out popup Error Message 
 		MessageBox(NULL, L"Invalid Entry\nPlease Try Again!", L"Error", MB_OK | MB_ICONERROR);
 		return 0;
 		break;
 	}
-	return selection;
+	return selection;//return to the selection
 }

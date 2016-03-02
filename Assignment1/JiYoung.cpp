@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+
 using namespace std;
 
 //This method is to check is it a valid Int Value , and prvent buffer garbage
@@ -22,6 +23,7 @@ int JiYoung::isValidInt() {
 	}
 	return validInt;
 }
+
 //Check Double Value
 double JiYoung::isValidDouble() {
 	string input;
@@ -41,6 +43,7 @@ double JiYoung::isValidDouble() {
 	return validDou;
 }
 
+//This method is used to clear whole screen 
 void JiYoung::clrscr() {
 	system("cls");
 }
@@ -55,6 +58,7 @@ void JiYoung::clrBuffer() {
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
+//This method is to set the width of any line
 void JiYoung::setw(string s, int i) {
 	int len = i - s.length();
 	for (int x = 1; x <= len; x++)
@@ -73,6 +77,7 @@ string JiYoung::doubleToStrPrecis(double a, int n)
 	return out.str();
 }
 
+//This method checks whether the input integer is bigger than zero(0)
 int JiYoung::largerThanZeroInt() {
 	int validInt;
 	bool isValid = false;
@@ -88,6 +93,7 @@ int JiYoung::largerThanZeroInt() {
 	return validInt;
 }
 
+//This method checks whether the input double is bigger than zero(0)
 double JiYoung::largerThanZeroDouble() {
 	double validDouble;
 	bool isValid = false;

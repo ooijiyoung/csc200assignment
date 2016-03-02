@@ -7,6 +7,7 @@ using namespace std;
 #ifndef _SUPERMARKET_
 #define _SUPERMARKET_
 
+//Supermarket class
 class Supermarket {
 private:
 	string name; //store name
@@ -15,12 +16,11 @@ private:
 	int itemInStore; //how many item in the stock.txt
 	Item item[100];
 public:
-	
 	string getStoreName();
 	double getStoreCash();
 	int getStoreStock();
 	
-	//some method  DO NOT REMOVE
+	//some method
 	void buyItem();
 	void finaceReport();
 	void stockReport();

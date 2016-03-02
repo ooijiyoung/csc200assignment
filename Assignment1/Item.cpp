@@ -4,8 +4,8 @@
 #include "Item.h"
 
 /*
-Ver 1.0
-7 Feb 2016
+Ver 2.0
+2 March 2016
 Author: Ooi Ji Young, Low Chun Shiong
 */
 
@@ -16,8 +16,6 @@ string Item::getDescript() { return descript; }
 int Item::getQuantity() { return quantity; }
 int Item::getWeight() { return weight; }
 double Item::getPrice() { return price; }
-
-
 
 //item setter 
 void Item::setItemName(string n) {

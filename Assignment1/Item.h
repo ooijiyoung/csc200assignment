@@ -3,8 +3,8 @@
 using namespace std;
 
 /*
-Ver 1.0
-7 Feb 2016   
+Ver 2.0
+2 March 2016
 Author: Ooi Ji Young, Low Chun Shiong
 */
 
@@ -15,8 +15,8 @@ class Item
 {
 private:
 	string name,descript; //ITEM CLASS
-	int quantity,weight; //weight in gram
-	double price;
+	int quantity,weight; //quantity and weight
+	double price;//price
 public:
 	//getter
 	string getItemName();

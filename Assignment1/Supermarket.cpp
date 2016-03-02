@@ -16,7 +16,7 @@ double Supermarket::getStoreCash() { return cash; }
 int Supermarket::getStoreStock() { return stock; }
 
 
-void Supermarket::buyItem() { //Basic stuff might be completed. Need more testing
+void Supermarket::buyItem() {
 	
 	ojy.clrscr();
 	cout << name << " Shop" << endl  << endl << "Items in store" << endl << endl;
@@ -24,9 +24,6 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 	cout << "Quantity"; cout << endl;
 
 	for (int x = 0; x < itemInStore; x++) {
-		// Print menu 
-		//DO NOT CALL THE listAllStock FUNCTION, this menu is slightly differernt
-		// I SAID DO NOT! 
 		cout << x + 1 << ". " << item[x].getItemName();
 		ojy.setw(item[x].getItemName(), 12);
 		cout << "RM" << item[x].getPrice();
@@ -39,14 +36,14 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 		cout << endl;
 	}
 	
-	cout << "Press 0 (zero) to exit.\nEnter Selection To Purchase Item: ";
+	cout << "Press 0 (zero) to exit." << endl << "Enter Selection To Purchase Item: ";
 	int selBuy = NULL;
-	int amount = NULL; //AMOUNT VALIDATION Done, need further testing
+	int amount = NULL;
 	bool isValidItem = false;
 	bool amntCheckPass = false;
 	while (isValidItem == false) {
 		selBuy = ojy.isValidInt();
-		if (selBuy > 0 && selBuy <= itemInStore) { //buy item
+		if (selBuy > 0 && selBuy <= itemInStore) { 
 			if (item[selBuy - 1].getQuantity() == 0) {
 				cout << "Item out of stock! No transection is made. Please retry later" << endl;
 				break;
@@ -65,7 +62,6 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 					amntCheckPass = true;
 				}
 			} while (amntCheckPass == false);
-			//after enter the amount, it needs to deduct the total quantity from the stock.txt
 			cout << amount << " "<< item[selBuy - 1].getItemName() << " sold RM" << item[selBuy - 1].getPrice()*amount << endl;
 			item[selBuy - 1].setQuantity(item[selBuy - 1].getQuantity() - amount);
 			cash = cash + item[selBuy - 1].getPrice()*amount; 
@@ -83,14 +79,13 @@ void Supermarket::buyItem() { //Basic stuff might be completed. Need more testin
 	}//end while
 }
 
-void Supermarket::finaceReport() {//DONE
+void Supermarket::finaceReport() {
 	ojy.clrscr();
 	cout << name << " Financial Report" << endl << endl;
 	double assetValue=0;
 	for (int x = 0; x < itemInStore; x++) {
 		assetValue = assetValue + (item[x].getQuantity() * item[x].getPrice());
 	}
-	//TODO: list store cash
 	cout << "Total Stock Value: RM" << assetValue << endl;
 	cout << "Available cash: RM" << cash << endl << endl;
 	cout << "Total Combined Asset Value (Stock + Cash): RM" << cash + assetValue << endl;
@@ -111,10 +106,7 @@ void Supermarket::stockMaintance() {
 	int selMain = NULL;
 	int selEditItem = NULL;
 	bool isValidItem = false;
-	//After selecting the item it can choose which section to edit 
-	//and from there enter the edited amount or info to replace the old data
-	
-	//TODO: print a menu to do - edit item or add new item or add stock - ojy
+
 	cout << "Choose from these 2 selections" << endl;
 	cout << "1. Add New Item" << endl << "2. Edit Current Stock" << endl << "3. Delete An Item" << endl;
 	cout << "Press 0 to return to menu: ";
@@ -125,7 +117,6 @@ void Supermarket::stockMaintance() {
 			string iName, iDesc;
 			int iQuan, iWeight;
 			double iPrice ;
-			//TODO : PRICE AND STOCK CANNOT BE LOWER THAN 0
 			cout << "Enter the New Item's Name : ";
 			getline(cin, iName);
 			cout << "Enter the New Item's Quantity : ";
