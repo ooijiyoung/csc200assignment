@@ -19,6 +19,7 @@ class JiYoung {
 		string doubleToStrPrecis(double, int);
 		int largerThanZeroInt();
 		double largerThanZeroDouble();
+		void charPrevention();
 };
 
 #endif // !_JIYOUNG_

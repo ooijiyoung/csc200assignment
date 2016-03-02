@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//This method is to check is it a valid Int Value , and prvent buffer garbage
+//Check is it a valid integer value and prevent buffer garbage
 int JiYoung::isValidInt() {
 	string input;
 	int validInt;
@@ -43,7 +43,7 @@ double JiYoung::isValidDouble() {
 	return validDou;
 }
 
-//This method is used to clear whole screen 
+//Use to clear whole screen 
 void JiYoung::clrscr() {
 	system("cls");
 }
@@ -107,4 +107,17 @@ double JiYoung::largerThanZeroDouble() {
 		}
 	}
 	return validDouble;
+}
+
+void JiYoung::charPrevention() {
+	bool ok;
+	if (!cin.fail() && (cin.peek() == EOF || cin.peek() == '\n')) {
+		ok = true;
+	}
+	else {
+		cout << "Error, please try again." << endl;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		//tweaks pls
+	}
 }

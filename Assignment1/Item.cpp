@@ -4,7 +4,7 @@
 #include "Item.h"
 
 /*
-Ver 2.0
+Ver 2.0(final)
 2 March 2016
 Author: Ooi Ji Young, Low Chun Shiong
 */
@@ -45,6 +45,7 @@ void Item::setWeight(int w) {
 	weight = w;
 }
 
+//print full details
 void Item::printData() {
 	cout << setprecision(2) << fixed << showpoint;
 	cout << name << " has " << quantity << " units of " << descript << ", weight " << weight << "g, RM" << price;

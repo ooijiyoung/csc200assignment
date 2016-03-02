@@ -29,7 +29,8 @@ int printMenu() {
 	cout << "4. Stock Maintanace" <<endl << "5. Quit" << endl << "Enter Selection: "; 
 	int selection;//The Selection of the menu 
 	cin >> selection; //Input Validation
-
+	
+	ojy.charPrevention();
 	ojy.clrBuffer();
 
 	switch (selection)
@@ -47,7 +48,7 @@ int printMenu() {
 		store.stockMaintance();
 		break;
 	case 5:
-		cout << "Thank you for choosing " + store.getStoreName();
+		cout << "Thank you for choosing " + store.getStoreName() << endl;
 		cout << "Press any key to exit" << endl;
 		ojy.getch();
 		exit(0);
