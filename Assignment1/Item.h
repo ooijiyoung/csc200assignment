@@ -33,11 +33,11 @@ public:
 	void setWeight(int);
 	void setPrice(double);
 
-	//Something else
 	void printData();
 	double calcTotalVal();
-
-	Item(); //constructor
+	
+	//constructor
+	Item();
 	
 };
 

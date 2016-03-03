@@ -4,4 +4,4 @@ Bread buns:1000:2.00:500:6-pack:
 Cabbage:10:1.90:300:each:
 Egg:100:0.50:25:each:
 Rice:25:15.90:1000:each:
-Cheese :12000:20.00:500:piece
+Cheese :600:20.00:500:piece
