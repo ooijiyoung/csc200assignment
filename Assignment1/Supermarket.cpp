@@ -408,6 +408,9 @@ Supermarket::Supermarket() {
 			wstring To(errormsg.begin(), errormsg.end());
 			LPCWSTR finalErrMsg = To.c_str();
 			MessageBox(NULL, finalErrMsg , L"Error", MB_OK | MB_ICONERROR); //make sure last EOF dont have the ':'
+			Supermarket::errormsg();
+			ojy.getch();
+			exit(1);
 		}
 
 	}
