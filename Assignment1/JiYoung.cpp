@@ -108,16 +108,3 @@ double JiYoung::largerThanZeroDouble() {
 	}
 	return validDouble;
 }
-
-void JiYoung::charPrevention() {
-	bool ok;
-	if (!cin.fail() && (cin.peek() == EOF || cin.peek() == '\n')) {
-		ok = true;
-	}
-	else {
-		cout << "Error, please try again." << endl;
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		//tweaks pls
-	}
-}

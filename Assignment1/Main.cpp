@@ -22,6 +22,7 @@ int main() {
 	return 0;
 }
 
+
 int printMenu() {
 	ojy.clrscr();
 	cout << store.getStoreName() << " Sales System " << endl << endl;
@@ -30,7 +31,6 @@ int printMenu() {
 	int selection;//The Selection of the menu 
 	cin >> selection; //Input Validation
 	
-	ojy.charPrevention();
 	ojy.clrBuffer();
 
 	switch (selection)
