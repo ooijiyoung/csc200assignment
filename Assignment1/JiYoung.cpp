@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//Check is it a valid integer value and prevent buffer garbage
+//Check if it's a valid integer value and prevent buffer garbage
 int JiYoung::isValidInt() {
 	string input;
 	int validInt;
@@ -24,7 +24,7 @@ int JiYoung::isValidInt() {
 	return validInt;
 }
 
-//Check Double Value
+//Check if it's a valid double value and prevent buffer garbage
 double JiYoung::isValidDouble() {
 	string input;
 	double validDou;
@@ -43,11 +43,12 @@ double JiYoung::isValidDouble() {
 	return validDou;
 }
 
-//Use to clear whole screen 
+//Clear whole screen 
 void JiYoung::clrscr() {
 	system("cls");
 }
 
+//getch function
 void JiYoung::getch() {
 	system("pause>nul");
 }

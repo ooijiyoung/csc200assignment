@@ -7,6 +7,8 @@ using namespace std;
 #ifndef _JIYOUNG_
 #define _JIYOUNG_
 #undef max
+
+//utility class
 class JiYoung {
 	public:
 		int isValidInt();

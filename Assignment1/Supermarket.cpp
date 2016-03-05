@@ -31,7 +31,7 @@ void Supermarket::buyItem() {
 		cout << item[x].getQuantity();
 		ojy.setw(to_string(item[x].getQuantity()), 12);
 		if (item[x].getQuantity() == 0) {
-			cout << "     NOTE - Out Of Stock!";
+			cout << "     NOTE - Out Of Stock!";//display this message if the item has ran out of stock
 		}
 		cout << endl;
 	}
@@ -43,6 +43,7 @@ void Supermarket::buyItem() {
 	bool amntCheckPass = false;
 	while (isValidItem == false) {
 		selBuy = ojy.isValidInt();
+		//if user select an out of stock item, this message will be displayed and prompt the user to retry 
 		if (selBuy > 0 && selBuy <= itemInStore) { 
 			if (item[selBuy - 1].getQuantity() == 0) {
 				cout << "Item out of stock! No transection is made. Please retry later" << endl;
@@ -336,10 +337,10 @@ void Supermarket::listAllStock() {
 	}
 }
 
+//Display error messaga if stock.txt can't be found or the content inside stock.txt is garbage
 void Supermarket::errormsg() {
 	::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);//Make Full screen
 	system("color 9F");
-	//DONT ASK ME TO EXPLAIN THIS -- I only know its works to change font
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // Obtain the Console handle
 	PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx = new CONSOLE_FONT_INFOEX();
 	lpConsoleCurrentFontEx->cbSize = sizeof(CONSOLE_FONT_INFOEX); // set the size of the CONSOLE_FONT_INFOEX
@@ -367,7 +368,6 @@ Supermarket::Supermarket() {
 	ifstream fileIn;
 	fileIn.open("Stock.txt");
 	if (fileIn.is_open()) {
-		//TODO : Need to seperate the string and put into correct var =.= 
 		string line;
 		//First Line
 		getline(fileIn, line, ':');//read name

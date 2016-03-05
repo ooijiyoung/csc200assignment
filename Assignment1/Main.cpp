@@ -13,6 +13,7 @@ JiYoung ojy;
 Supermarket store; //global var in this file
 int printMenu();
 
+//main method
 int main() {
 	cout << fixed << showpoint << setprecision(2);
 	for (;;) {
@@ -22,7 +23,7 @@ int main() {
 	return 0;
 }
 
-
+//print menu
 int printMenu() {
 	ojy.clrscr();
 	cout << store.getStoreName() << " Sales System " << endl << endl;
@@ -36,18 +37,23 @@ int printMenu() {
 	switch (selection)
 	{
 	case 1:
+		//select shop
 		store.buyItem();
 		break;
 	case 2:
+		//select financial report
 		store.finaceReport();
 		break;
 	case 3:
+		//select stock report
 		store.stockReport();
 		break;
 	case 4:
+		//select stock maintance
 		store.stockMaintance();
 		break;
 	case 5:
+		//select exit program
 		cout << "Thank you for choosing " + store.getStoreName() << endl;
 		cout << "Press any key to exit" << endl;
 		ojy.getch();
