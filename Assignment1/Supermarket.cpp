@@ -95,6 +95,7 @@ void Supermarket::finaceReport() {
 	ojy.getch();
 }
 
+//display full list of stock
 void Supermarket::stockReport() {
 	ojy.clrscr();
 	cout << name << " Stock Report" << endl;
@@ -103,6 +104,7 @@ void Supermarket::stockReport() {
 	ojy.getch();
 }
 
+//edit the item's information 
 void Supermarket::stockMaintance() {
 	ojy.clrscr();
 	int selMain = NULL;
@@ -313,6 +315,7 @@ void Supermarket::stockMaintance() {
 	}//end while
 }
 
+//list all stock
 void Supermarket::listAllStock() {
 	cout << "Item Name"; ojy.setw("Item Name", 15); cout << "Quantity"; ojy.setw("Quantity", 12);
 	cout << "Price"; ojy.setw("Price", 10); cout << "Weight"; ojy.setw("Weight", 10);
@@ -360,6 +363,7 @@ void Supermarket::errormsg() {
 	cout << "Press any key to exit the program as this program cannot be continue";
 }
 
+//read data from stock.txt
 Supermarket::Supermarket() {
 	name = "NULL";
 	cash = NULL;
@@ -426,7 +430,8 @@ Supermarket::Supermarket() {
 	string title = "title " + name + " Sales System";
 	system(title.c_str());
 }
-//TODO: SAVE STOCK TO STOCK.TXT
+
+//destructor
 Supermarket::~Supermarket(){
 	ojy.clrscr();
 	cout << "Saving Data... Please Wait" << endl;
